@@ -31,7 +31,7 @@ The Domain layer defines the core business entities (which typically correspond 
 
 This layer encapsulates the application's business logic and orchestrates operations between the Domain and Persistence layers. It is further divided into the following components:
 
-* **Data:**
+* **Data (Dtos):**
     * Contains the models exposed via the API (both request and response models).
     * These models are mapped to the application's **Domain entities** using AutoMapper within each service method, ensuring a clear separation between the business logic and persistence concerns.
 * **Interfaces:**
