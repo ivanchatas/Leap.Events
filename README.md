@@ -69,4 +69,4 @@ To run this project, no additional installations are required beyond a standard 
 
 ## Known Issues / Caveats
 
-* **Event-TicketSales Mapping Conflict:** A specific issue was encountered during FluentNHibernate configuration where the `Event` and `TicketSales` entity references were prioritized incorrectly over the `TicketSales.EventId` mapping. This necessitated the use of a direct SQL query within the `GetTicketsByEventId` method (located in the `TicketSaleService`) to retrieve the correct data. This challenge highlights a potential complexity in resolving `Map` and `Reference` configurations with FluentNHibernate, suggesting that an XML-based mapping approach might have been more straightforward in this particular scenario.
+* **Event-TicketSales Mapping Conflict:** I made a mistake; I prioritized the `Event` and `TicketSales` reference over the `TicketSales.EventId` in the mapping, which is why I have a SQL query in the `GetTicketsByEventId` method (located in the `TicketSaleService`) method. When I did the mapping with FluentNHibernate I had several conflicts between Map and Reference, I should have done it through XML.
