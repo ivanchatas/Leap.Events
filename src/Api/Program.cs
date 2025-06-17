@@ -1,3 +1,4 @@
+using Api.Middlewares;
 using Application;
 using Persistence;
 
@@ -13,6 +14,19 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddApplication();
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        builder =>
+        {
+            builder
+                .WithOrigins("http://localhost:4200")
+                .AllowCredentials()
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,7 +36,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors();
+
 app.UseHttpsRedirection();
+
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.UseAuthorization();
 

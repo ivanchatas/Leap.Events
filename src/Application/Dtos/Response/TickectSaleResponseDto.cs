@@ -8,7 +8,7 @@ namespace Application.Dtos.Response
         public string EventId { get; set; }
         public string UserId { get; set; }
         public DateTime PurchaseDate { get; set; }
-        public DateTime PriceInCents { get; set; }
+        public int PriceInCents { get; set; }
 
         public Event Event { get; set; }
     }

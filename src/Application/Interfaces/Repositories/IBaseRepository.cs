@@ -27,5 +27,7 @@ namespace Application.Interfaces.Repositories
         Task DeleteAsync(TEntity entity);
 
         Task<bool> ExistsAsync(Expression<System.Func<TEntity, bool>> predicate);
+
+        Task<IQueryable<TEntity>> GetBySqlQuery(Type type, string sql);
     }
 }

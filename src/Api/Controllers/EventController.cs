@@ -1,4 +1,5 @@
-﻿using Application.Interfaces.Services;
+﻿using Application.Dtos.Response;
+using Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
@@ -14,13 +15,14 @@ namespace Api.Controllers
             _eventService = eventService ?? throw new ArgumentNullException(nameof(eventService));
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(string id) 
+            => Ok(await _eventService.GetById(id));
+
         [HttpGet("upcoming")]
         public async Task<IActionResult> GetUpcomingEvents(int days)
         {
-            if (days <= 0)
-            {
-                return BadRequest("Days must be greater than zero.");
-            }
+           
             var events = await _eventService.GetUpcoming(days);
             return Ok(events);
         }

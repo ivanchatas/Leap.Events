@@ -94,5 +94,12 @@ namespace Persistence.Repositories
         {
             return await _session.Query<TEntity>().AnyAsync(predicate);
         }
+
+        public virtual async Task<IQueryable<TEntity>> GetBySqlQuery(Type type, string sql)
+        {
+            var query = _session.CreateSQLQuery(sql).AddEntity(type);
+            var result = await Task.FromResult(query.List<TEntity>().AsQueryable());
+            return result;
+        }
     }
 }

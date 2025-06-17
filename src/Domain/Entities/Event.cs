@@ -8,11 +8,11 @@
         public virtual DateTime EndsOn { get; set; }
         public virtual string Location { get; set; }
 
-        public virtual IList<TicketSale> TicketSale { get; set; }
+        public virtual ICollection<TicketSale> TicketSales { get; set; }
 
         public Event()
         {
-            TicketSale = new List<TicketSale>();
+            TicketSales = new HashSet<TicketSale>();
         }
     }
 }
